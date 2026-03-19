@@ -1,13 +1,13 @@
 <?php
 
-function validateRequiredFields(array $input, array $fields): ?array{
+function validateRequiredFields(array $input, array $fields): ?string{
     $missing = [];
     foreach($fields as $field){
         if(!isset($input[$field])){
             $missing[] = $field;
         }
     }
-    return empty($missing) ? implode(", ", $missing) . ' are required' : null;
+    return !empty($missing) ? implode(", ", $missing) . ' are required' : null;
 }
 
 function validateUserFields(array $input): ?string{

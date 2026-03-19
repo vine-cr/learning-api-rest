@@ -19,7 +19,6 @@ function handleGet(string $dataFile): void {
 
 function handlePost($dataFile): void {
     try{
-        echo "teste";
         $input = json_decode(
             file_get_contents('php://input'), true
         );
@@ -44,7 +43,12 @@ function handlePut(string $dataFile): void {
         respond(editUser($dataFile, $id, $input));
     } catch (\throwable $e){
         http_response_code(500);
-        echo json_encode(['error' => 'Internal server error']);
+        echo json_encode([
+            'error' => 'Internal Server Error',
+            'message' => $e->getMessage(),
+            'file' => $e->getFile(),
+            'line' => $e->getLine()
+        ]);
     }
 }
 

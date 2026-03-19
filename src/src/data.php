@@ -16,8 +16,22 @@ function insertUser(string $dataFile, array $user): array{
 
 function saveData(string $dataFile, array $data): void{
     file_put_contents($dataFile,
-         json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
+        json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
     );
 
     
+}
+
+function updateUser(string $dataFile, int $id, array $fields): ?array{
+    $data = loadData($dataFile);
+
+    foreach ($data['users'] as $i => $user){
+        if ($user['id'] === $id) {
+            $data['users'][$i] = array_merge($user, $fields);
+            saveData($dataFile, $data);
+            return $data['users'][$i];
+        }
+    }
+
+    return null;
 }
