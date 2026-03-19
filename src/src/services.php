@@ -2,7 +2,7 @@
 
 function getAllUsers(string $dataFile): array{
     $data = loadData($dataFile);
-    return ['user' => $data['user']];
+    return ['users' => $data['users']];
 }
 
 function createUser(string $input, array $dataFile): ?array{

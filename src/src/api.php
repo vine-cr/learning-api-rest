@@ -1,16 +1,16 @@
 <?php
 
-require_once __DIR__ . '/controller.php';
+require_once __DIR__ . '/controllers.php';
 require_once __DIR__ . '/../config/config.php';
 
 $method = $_SERVER['REQUEST_METHOD'];  
 
 match($method){
     'GET'       => handleGet($dataFile),
-    'POST'      => handlePost($dataFIle),
+    'POST'      => handlePost($dataFile),
     'PUT'       => handlePut($dataFile),
-    'PATCH'     => handlePatch($dataFIle),
-    'DELETE'    => handleDelete($dataFIle),
+    'PATCH'     => handlePatch($dataFile),
+    'DELETE'    => handleDelete($dataFile),
     default   => handleMethodNotFound(),
 };
 
