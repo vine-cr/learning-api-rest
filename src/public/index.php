@@ -22,10 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 $uri = strtok($_SERVER['REQUEST_URI'], '?');
 
-match($uri){
-    '/api/users' => require __DIR__ . '../src/api.php',
-    default      => notFound(),
-};
+if($uri == '/api/users') {
+    require __DIR__ . '/../src/api.php';
+} else {
+    notFound();
+}
 
 function notFound(): void {
     http_response_code(404);

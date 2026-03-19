@@ -1,9 +1,7 @@
 <?php 
 
 function loadData(string $dataFile): array{
-    return json_decode(
-        file_get_contents($dataFile), true
-    );
+    return json_decode(file_get_contents($dataFile), true);
 }
 
 function insertUser(string $dataFile, array $user): array{

@@ -5,7 +5,7 @@ require_once __DIR__ . '/data.php';
 require_once __DIR__ . '/../config/config.php';
 function handleGet(string $dataFile): void {
     try {
-        respond(getAllUsers($dataFile));
+        echo respond(getAllUsers($dataFile));
     } catch(\Throwable $e) {
         http_response_code(500);
         echo json_encode([
@@ -17,15 +17,21 @@ function handleGet(string $dataFile): void {
     }
 }
 
-function handlePost(string $dataFile): void {
+function handlePost($dataFile): void {
     try{
+        echo "teste";
         $input = json_decode(
             file_get_contents('php://input'), true
         );
         respond(createUser($dataFile, $input));
     } catch(\Throwable $e){
         http_response_code(500);
-        echo json_encode(['error' => 'Internal error']);
+        echo json_encode([
+            'error' => 'Internal Server Error',
+            'message' => $e->getMessage(),
+            'file' => $e->getFile(),
+            'line' => $e->getLine()
+        ]);
     }
 }
 
@@ -46,8 +52,8 @@ function respond(array $result): ?string{
     http_response_code($result['status']);
 
     if(isset($result['error'])) {
-        echo json_encode(['error' => $result['error']]);
+        return json_encode(['error' => $result['error']]);
     } else {
-        echo json_encode($result['$data']);
+        return json_encode($result['users']);
     }
 }
