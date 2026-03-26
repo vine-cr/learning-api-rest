@@ -1,35 +1,11 @@
 {
-    "nextId": 6,
+    "nextId": 3,
     "users": [
         {
-            "id": 1,
-            "name": "Cleber",
-            "age": 22,
-            "email": "cleberiano@gmail.com"
-        },
-        {
-            "name": "Vinicius",
-            "age": 20,
-            "email": "vinicius@email.com",
+            "name": "jager",
+            "age": 30,
+            "email": "kaiju@gmail.com",
             "id": 2
-        },
-        {
-            "name": "Pedro",
-            "age": 21,
-            "email": "pedro@gmail.com",
-            "id": 3
-        },
-        {
-            "name": "Pedro",
-            "age": 21,
-            "email": "pedro@gmail.com",
-            "id": 4
-        },
-        {
-            "name": "Joao",
-            "age": 25,
-            "email": "joao@email.com",
-            "id": 5
         }
     ]
 }

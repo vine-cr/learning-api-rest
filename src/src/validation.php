@@ -24,16 +24,14 @@ function validateUserFields(array $input): ?string{
     }
 
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-        echo "Email invalido. \n";
+        return "Email invalido. \n";
     }
 
     if(!is_numeric($age)){
-        echo "Idade precisa ser um numero. \n";
+        return "Idade precisa ser um numero. \n";
     } elseif($age < 0){
-        echo "Idade não pode ser vazio nem negativo. \n";
+        return "Idade não pode ser vazio nem negativo. \n";
     }
 
     return null;
 }
-
-// $error = validateRequiredFields($input, [])
