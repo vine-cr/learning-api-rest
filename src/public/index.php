@@ -22,9 +22,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 $uri = strtok($_SERVER['REQUEST_URI'], '?');
 
-if($uri == '/api/users') {
+if ($uri === '/api/users') {
     require __DIR__ . '/../src/api.php';
-} else {
+} 
+elseif ($uri === '/docs') {
+    header('Content-Type: text/html');
+    echo file_get_contents(__DIR__ . '/../views/docs.html');
+} 
+elseif ($uri === '/openapi.json') {
+    header('Content-Type: application/json');
+    echo file_get_contents(__DIR__ . '/../openapi.json');
+} 
+else {
     notFound();
 }
 

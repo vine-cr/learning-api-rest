@@ -1,11 +1,17 @@
 {
-    "nextId": 3,
+    "nextId": 5,
     "users": [
         {
-            "name": "jager",
-            "age": 30,
-            "email": "kaiju@gmail.com",
+            "name": "Mistsubichi",
+            "age": 27,
+            "email": "eclipse@email.com",
             "id": 2
+        },
+        {
+            "name": "Pererequinha",
+            "age": 21,
+            "email": "pedro@gmail.com",
+            "id": 4
         }
     ]
 }

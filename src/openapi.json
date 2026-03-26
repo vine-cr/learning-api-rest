@@ -1,0 +1,145 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Learning API REST",
+        "version": "1.0.0",
+        "description": "API simples para gestão de utilizadores."
+    },
+    "servers": [
+        {
+        "url": "http://localhost:8000"
+        }
+    ],
+    "tags": [
+        {
+        "name": "Users",
+        "description": "Operações de gestão de utilizadores"
+        }
+    ],
+    "paths": {
+        "/api/users": {
+        "get": {
+            "tags": ["Users"],
+            "summary": "Listar todos os utilizadores",
+            "responses": {
+            "200": {
+                "description": "Lista de utilizadores",
+                "content": {
+                "application/json": {
+                    "schema": {
+                    "type": "array",
+                    "items": { "$ref": "#/components/schemas/User" }
+                    }
+                }
+                }
+            }
+            }
+        },
+        "post": {
+            "tags": ["Users"],
+            "summary": "Criar um novo utilizador",
+            "requestBody": {
+            "required": true,
+            "content": {
+                "application/json": {
+                "schema": { "$ref": "#/components/schemas/UserInput" }
+                }
+            }
+            },
+            "responses": {
+            "201": { "description": "Utilizador criado com sucesso" },
+            "400": { "description": "Pedido inválido" }
+            }
+        },
+        "put": {
+            "tags": ["Users"],
+            "summary": "Atualizar totalmente um utilizador",
+            "parameters": [
+            { "$ref": "#/components/parameters/Id" }
+            ],
+            "requestBody": {
+            "required": true,
+            "content": {
+                "application/json": {
+                "schema": { "$ref": "#/components/schemas/UserInput" }
+                }
+            }
+            },
+            "responses": {
+            "200": { "description": "Utilizador atualizado com sucesso" },
+            "400": { "description": "Pedido inválido" },
+            "404": { "description": "Utilizador não encontrado" }
+            }
+        },
+        "patch": {
+            "tags": ["Users"],
+            "summary": "Atualizar parcialmente um utilizador",
+            "parameters": [
+            { "$ref": "#/components/parameters/Id" }
+            ],
+            "requestBody": {
+            "required": true,
+            "content": {
+                "application/json": {
+                "schema": { "$ref": "#/components/schemas/UserPartial" }
+                }
+            }
+            },
+            "responses": {
+            "200": { "description": "Utilizador atualizado com sucesso" },
+            "404": { "description": "Utilizador não encontrado" }
+            }
+        },
+        "delete": {
+            "tags": ["Users"],
+            "summary": "Remover um utilizador",
+            "parameters": [
+            { "$ref": "#/components/parameters/Id" }
+            ],
+            "responses": {
+            "200": { "description": "Utilizador apagado com sucesso" },
+            "404": { "description": "Utilizador não encontrado" }
+            }
+        }
+        }
+    },
+    "components": {
+        "parameters": {
+        "Id": {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "integer" },
+            "description": "ID único do utilizador"
+        }
+        },
+        "schemas": {
+        "User": {
+            "type": "object",
+            "properties": {
+            "id": { "type": "integer", "example": 1 },
+            "name": { "type": "string", "example": "Cleber" },
+            "age": { "type": "integer", "example": 22 },
+            "email": { "type": "string", "format": "email", "example": "cleberiano@gmail.com" }
+            }
+        },
+        "UserInput": {
+            "type": "object",
+            "required": ["name", "age", "email"],
+            "properties": {
+            "name": { "type": "string", "example": "Vinicius" },
+            "age": { "type": "integer", "example": 20 },
+            "email": { "type": "string", "format": "email", "example": "vinicius@email.com" }
+            }
+        },
+        "UserPartial": {
+            "type": "object",
+            "properties": {
+            "name": { "type": "string", "example": "Pedro" },
+            "age": { "type": "integer", "example": 21 },
+            "email": { "type": "string", "format": "email" }
+            }
+        }
+        }
+    }
+}
